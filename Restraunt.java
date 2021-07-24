@@ -1,20 +1,28 @@
 import java.util.ArrayList;
 
 public class Restraunt {
-    public int numTables;
     private ArrayList<TableGroup> tableGroups;
     private ArrayList<Table> tables;
     private ArrayList<Server> servers;
 
-    Restraunt(int numTables) {
-        this.numTables = numTables;
+    Restraunt(Table[] tables, Server[] servers) {
         this.tableGroups = new ArrayList<TableGroup>();
         this.tables = new ArrayList<Table>();
         this.servers = new ArrayList<Server>();
+        for (Table table : tables) {
+            this.tables.add(table);
+        }
+        for (Server server : servers) {
+            this.servers.add(server);
+        }
     }
 
-    private void generateTableGroups() {
+    public void generateTableGroups() {
         System.out.println("Generating table groups...");
+    }
+
+    public void seatCustomers() {
+        System.out.println("Seating customers...");
     }
 
     public void addTables(Table... tables) {
@@ -32,7 +40,7 @@ public class Restraunt {
     @Override
     public String toString() {
         return "Restraunt{" +
-                "numTables=" + numTables +
+                "numTables=" + tables.size() +
                 ", tableGroups=" + tableGroups +
                 ", tables=" + tables +
                 ", servers=" + servers +
@@ -40,6 +48,6 @@ public class Restraunt {
     }
 
     public static void main(String[] args) {
-        
+
     }
 }
