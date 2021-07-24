@@ -6,4 +6,12 @@ public class Server {
         this.name = name;
         this.salary = salary;
     }
+
+    @Override
+    public String toString() {
+        return "Server{" +
+                "name='" + this.name + '\'' +
+                ", salary=" + this.salary +
+                '}';
+    }
 }

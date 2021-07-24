@@ -29,7 +29,17 @@ public class Restraunt {
         }
     }
 
-    public static void main(String[] args) {
+    @Override
+    public String toString() {
+        return "Restraunt{" +
+                "numTables=" + numTables +
+                ", tableGroups=" + tableGroups +
+                ", tables=" + tables +
+                ", servers=" + servers +
+                '}';
+    }
 
+    public static void main(String[] args) {
+        
     }
 }

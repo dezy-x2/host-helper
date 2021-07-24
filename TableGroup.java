@@ -16,4 +16,13 @@ public class TableGroup {
         }
     }
 
+    @Override
+    public String toString() {
+        return "TableGroup{" +
+                "id=" + id +
+                ", tables=" + tables +
+                ", server=" + server +
+                '}';
+    }
+
 }
