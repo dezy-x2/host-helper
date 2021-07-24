@@ -21,8 +21,12 @@ public class Restaurant {
         System.out.println("Generating table groups...");
     }
 
-    public void seatCustomers() {
-        System.out.println("Seating customers...");
+    public void seatCustomers(boolean reservation) {
+        if (!reservation) {
+            System.out.println("Seatting customers...");
+        } else {
+            System.out.println("Reserving tables...");
+        }
     }
 
     public void addTables(Table... tables) {
