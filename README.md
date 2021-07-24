@@ -1,0 +1,2 @@
+This program should be able to replicate the work that a restraunt host would do in regards of grouping tables and assigning these groups to a waiter. It will also be able to decide which guests go where and who serves them based on how many people are already sat in each section.
+**no instructions on how to use as it is still far from complete enough for use**
