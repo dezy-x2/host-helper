@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 
-public class Restraunt {
+public class Restaurant {
     private ArrayList<TableGroup> tableGroups;
     private ArrayList<Table> tables;
     private ArrayList<Server> servers;
 
-    Restraunt(Table[] tables, Server[] servers) {
+    Restaurant(Table[] tables, Server[] servers) {
         this.tableGroups = new ArrayList<TableGroup>();
         this.tables = new ArrayList<Table>();
         this.servers = new ArrayList<Server>();
