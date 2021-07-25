@@ -4,11 +4,11 @@ public class Table {
     private boolean isEmpty;
     public Server server;
 
-    public Table(int numSeats, Server server) {
+    public Table(int numSeats) {
         this.numSeats = numSeats;
         this.isReserved = false;
         this.isEmpty = true;
-        this.server = server;
+        this.server = null;
     }
 
     public void fillTable(boolean reservation) {
