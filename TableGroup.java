@@ -27,10 +27,10 @@ public class TableGroup {
 
     @Override
     public String toString() {
-        return "TableGroup{" +
-                "tables=" + tables +
-                ", server=" + server +
-                '}';
+        return "TableGroup{\n" +
+                "\ntables=" + tables +
+                ", \nserver=" + server +
+                "\n}";
     }
 
 }

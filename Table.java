@@ -36,10 +36,10 @@ public class Table {
 
     @Override
     public String toString() {
-        return "Table{" +
-                "numSeats=" + this.numSeats +
-                ", server=" + this.server + 
-                "}";
+        return "Table{\n" +
+                "\nnumSeats=" + this.numSeats +
+                ", \nserver=" + this.server + 
+                "\n}";
     }
 
 }

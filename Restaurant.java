@@ -43,15 +43,22 @@ public class Restaurant {
 
     @Override
     public String toString() {
-        return "Restraunt{" +
+        return "Restraunt{\n" +
                 "numTables=" + tables.size() +
-                ", tableGroups=" + tableGroups +
-                ", tables=" + tables +
-                ", servers=" + servers +
-                '}';
+                ", \ntableGroups=" + tableGroups +
+                ", \ntables=" + tables +
+                ", \nservers=" + servers +
+                "\n}";
     }
 
     public static void main(String[] args) {
-
+        Table table1 = new Table(4);
+        Table table2 = new Table(2);
+        Server server1 = new Server("Daniel", 100);
+        Server server2 = new Server("John", 200);
+        Table[] tables = {table1, table2};
+        Server[] servers = {server1, server2};
+        Restaurant restaurant1 = new Restaurant(tables, servers);
+        System.out.println(restaurant1);
     }
 }

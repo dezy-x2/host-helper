@@ -9,9 +9,9 @@ public class Server {
 
     @Override
     public String toString() {
-        return "Server{" +
-                "name='" + this.name + '\'' +
-                ", salary=" + this.salary +
-                '}';
+        return "Server{\n" +
+                "\nname='" + this.name + '\'' +
+                ", \nsalary=" + this.salary +
+                "\n}";
     }
 }
