@@ -1,21 +1,24 @@
 public class Table {
-    public int id;
     public int numSeats;
     private boolean isReserved;
     private boolean isEmpty;
     public Server server;
 
-    public Table(int numSeats, int id) {
-        this.id = id;
+    public Table(int numSeats, Server server) {
         this.numSeats = numSeats;
         this.isReserved = false;
         this.isEmpty = true;
-        this.server = null;
+        this.server = server;
     }
 
-    public void reserve() {
-        this.isReserved = true;
-        this.isEmpty = false;
+    public void fillTable(boolean reservation) {
+        if(this.isAvaliable() && reservation) {
+            this.isReserved = true;
+        } else if (this.isAvaliable() && !reservation) {
+            this.isReserved = false;
+            this.isEmpty = false;
+        }
+        
     }
 
     public void empty() {
@@ -36,7 +39,6 @@ public class Table {
         return "Table{" +
                 "numSeats=" + this.numSeats +
                 ", server=" + this.server + 
-                ", id=" + this.id +
                 "}";
     }
 
