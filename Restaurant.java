@@ -52,8 +52,8 @@ public class Restaurant {
     }
 
     public static void main(String[] args) {
-        Table table1 = new Table(4);
-        Table table2 = new Table(2);
+        Table table1 = new Table(0,4);
+        Table table2 = new Table(1,2);
         Server server1 = new Server("Daniel", 100);
         Server server2 = new Server("John", 200);
         Table[] tables = {table1, table2};

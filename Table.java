@@ -1,10 +1,12 @@
 public class Table {
+    public int id;
     public int numSeats;
     private boolean isReserved;
     private boolean isEmpty;
     public Server server;
 
-    public Table(int numSeats) {
+    public Table(int id, int numSeats) {
+        this.id = id;
         this.numSeats = numSeats;
         this.isReserved = false;
         this.isEmpty = true;
@@ -37,6 +39,7 @@ public class Table {
     @Override
     public String toString() {
         return "Table{\n" +
+                "id=" + id +
                 "\nnumSeats=" + this.numSeats +
                 ", \nserver=" + this.server + 
                 "\n}";
