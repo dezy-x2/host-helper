@@ -52,6 +52,36 @@ public class Restaurant {
         }
     }
 
+    private int maxEmptyTables(ArrayList<TableGroup> tableGroups) {
+        int max = Integer.MAX_VALUE;
+        for (TableGroup tableGroup : tableGroups) {
+            int emptyTables = tableGroup.emptyCount();
+            if (emptyTables < max) {
+                max = emptyTables;
+            }
+        }
+        return max;
+    }
+
+    private TableGroup bestTableGroup() {
+        ArrayList<TableGroup> availableGroups = new ArrayList<TableGroup>();
+        for (TableGroup tableGroup : this.tableGroups) {
+            if (!tableGroup.isFull()) {
+                availableGroups.add(tableGroup);
+            }
+        }
+        int maxEmptyTables = this.maxEmptyTables(availableGroups);
+        for (int i=0; i<availableGroups.size(); i++) {
+            TableGroup tableGroup = availableGroups.get(i);
+            if (tableGroup.emptyCount() < maxEmptyTables) {
+                availableGroups.remove(i);
+                i--;
+            }
+        }
+        int index = (int)Math.floor(Math.random() * availableGroups.size());
+        return availableGroups.get(index);
+    }
+
     public void seatCustomers(boolean reservation) {
         if (!reservation) {
             System.out.println("Seatting customers...");
