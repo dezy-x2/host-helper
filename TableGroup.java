@@ -38,6 +38,17 @@ public class TableGroup {
         }
     }
 
+    public Table bestTable() {
+        Table bestTable = null;
+        for (Table table : tables) {
+            if (table.isAvaliable()) {
+                bestTable = table;
+                break;
+            }
+        }
+        return bestTable;
+    }
+
     @Override
     public String toString() {
         return "TableGroup{\n" +
