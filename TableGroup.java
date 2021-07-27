@@ -20,6 +20,16 @@ public class TableGroup {
         return true;
     }
 
+    public int emptyCount() {
+        int count = 0;
+        for (Table table : tables) {
+            if (table.isAvaliable()) {
+                count++;
+            }
+        }
+        return count;
+    }
+
     public void fillTable(boolean reserved) {
         if(reserved) {
             System.out.println("Reserving table...");
