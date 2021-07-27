@@ -17,26 +17,36 @@ public class Restaurant {
         }
     }
 
+    // Add a table group to the restaurant
     public void generateTableGroups() {
         System.out.println("Generating table groups...");
+        // need a copy i can modify
         ArrayList<Table> tablesCopy = (ArrayList<Table>) this.tables.clone();
         int tableAmount = tables.size();
         int serverAmount = servers.size();
         int tableGroupAmount = (int)((tableAmount / serverAmount)+0.5);
+        // just so we can make sure every server has a table
         for (int i=0; i<serverAmount; i++) {
             ArrayList<Table> temp = new ArrayList<Table>();
+            // makes sure that we pick an appropiate ammount of tables per group
             for (int j=0; j<tableGroupAmount; j++) {
+                // this makes sure that every table gets assinged to a group
+                // without this the if there are an odd number of tables one won't get assigned
                 if(i == serverAmount-1 && j == 0) {
                     for (int k=0; k<tablesCopy.size(); k++) {
                         temp.add(tablesCopy.get(k));
+                        // if you don't remove the index they will be added twice
                         tablesCopy.remove(k);
                     }
                 } else {
+                    // picks random tables from the list for each group
                     int index = (int)Math.floor(Math.random() * tablesCopy.size());
                     temp.add(tablesCopy.get(index));
+                    // if you don't remove the index they will be added twice
                     tablesCopy.remove(index);
                 }
             }
+            // finally creates the table group and adds it to the Restaurants list
             Server currServer = this.servers.get(i);
             this.tableGroups.add(new TableGroup(currServer,temp));
         }
