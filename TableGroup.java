@@ -6,6 +6,9 @@ public class TableGroup {
     public TableGroup(Server server, ArrayList<Table> tables) {
         this.tables = tables;
         this.server = server;
+        for (Table table : this.tables) {
+            table.setServer(this.server);
+        }
     }
 
     public boolean isFull() {
