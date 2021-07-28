@@ -41,6 +41,7 @@ public class Restaurant {
                 } else {
                     // picks random tables from the list for each group
                     int index = (int)Math.floor(Math.random() * tablesCopy.size());
+                    // a bug arrises here with even amounts of tables
                     try {
                         temp.add(tablesCopy.get(index));
                         // if you don't remove the index they will be added twice
