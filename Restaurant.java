@@ -41,9 +41,14 @@ public class Restaurant {
                 } else {
                     // picks random tables from the list for each group
                     int index = (int)Math.floor(Math.random() * tablesCopy.size());
-                    temp.add(tablesCopy.get(index));
-                    // if you don't remove the index they will be added twice
-                    tablesCopy.remove(index);
+                    try {
+                        temp.add(tablesCopy.get(index));
+                        // if you don't remove the index they will be added twice
+                        tablesCopy.remove(index);
+                    } catch (IndexOutOfBoundsException e) {
+                        //TODO: handle exception
+                    }
+                    
                 }
             }
             // finally creates the table group and adds it to the Restaurants list
@@ -118,12 +123,12 @@ public class Restaurant {
         Table table3 = new Table(2,4);
         Table table4 = new Table(3,2);
         Table table5 = new Table(4,6);
-        Table table6 = new Table(5,4);
+        // Table table6 = new Table(5,4);
 
         Server server1 = new Server("Daniel", 100);
         Server server2 = new Server("John", 200);
 
-        Table[] tables = {table1, table2, table3, table4, table5, table6};
+        Table[] tables = {table1, table2, table3, table4, table5};
         Server[] servers = {server1, server2};
 
         Restaurant restaurant1 = new Restaurant(tables, servers);
