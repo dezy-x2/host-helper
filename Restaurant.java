@@ -83,11 +83,11 @@ public class Restaurant {
     }
 
     public void seatCustomers(boolean reservation) {
-        if (!reservation) {
-            System.out.println("Seatting customers...");
-        } else {
-            System.out.println("Reserving tables...");
-        }
+        System.out.println(reservation ? "Reserving tables..." : "Seatting customers...");
+        TableGroup tableGroup = this.bestTableGroup();
+        Table table = tableGroup.bestTable();
+        table.fillTable(reservation);
+        System.out.println(reservation ? "Reserved table " + table.id : "Seating at table " + table.id + "...");
     }
 
     public void addTables(Table... tables) {
@@ -118,16 +118,16 @@ public class Restaurant {
         Table table3 = new Table(2,4);
         Table table4 = new Table(3,2);
         Table table5 = new Table(4,6);
-        // Table table6 = new Table(5,4);
+        Table table6 = new Table(5,4);
 
         Server server1 = new Server("Daniel", 100);
         Server server2 = new Server("John", 200);
 
-        Table[] tables = {table1, table2, table3, table4, table5};
+        Table[] tables = {table1, table2, table3, table4, table5, table6};
         Server[] servers = {server1, server2};
 
         Restaurant restaurant1 = new Restaurant(tables, servers);
         restaurant1.generateTableGroups();
-        System.out.println(restaurant1.tableGroups);
+        restaurant1.seatCustomers(false);
     }
 }
