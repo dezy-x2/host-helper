@@ -173,6 +173,7 @@ public class Restaurant {
                     break;
                 case 'p':
                     System.out.println(this.printTables());
+                    break;
                 default:
                     System.out.println("Invalid input");
                     break;
