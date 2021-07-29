@@ -131,7 +131,7 @@ public class Restaurant {
                     this.seatCustomers(true);
                     break;
                 case 'h':
-                    System.out.println("Options:\n's': Seat a customer right away\n'r': Reserve a seat for a customer\n'e': Empty a seat\n'X': End shift\n:'E': Empty all tables");
+                    System.out.println("Options:\n's': Seat a customer right away\n'r': Reserve a seat for a customer\n'e': Empty a seat\n'X': End shift\n'E': Empty all tables");
                     break;
                 case 'e':
                     System.out.print("Enter ID of table to empty\n>");
