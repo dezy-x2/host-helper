@@ -144,7 +144,13 @@ public class Restaurant {
                     }
                     break;
                 case 'X':
-                    return;
+                    System.out.print("Are you sure you want to exit?(y/n)\n>");
+                    char exit = sc.next().charAt(0);
+                    if (exit == 'y') {
+                        System.out.println("Goodbye :)");
+                        return;
+                    }
+                    break;
                 default:
                     System.out.println("Invalid input");
                     break;
