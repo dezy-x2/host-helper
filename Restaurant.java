@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+import java.util.*;
 
 public class Restaurant {
     private ArrayList<TableGroup> tableGroups;
@@ -117,6 +117,39 @@ public class Restaurant {
                 "\n}";
     }
 
+    public void host() {
+        Scanner sc = new Scanner(System.in);
+        this.generateTableGroups();
+        while (true) {
+            System.out.print("What would you like to do? \n>");
+            char res = sc.next().charAt(0);
+            switch (res) {
+                case 's':
+                    this.seatCustomers(false);
+                    break;
+                case 'r':
+                    this.seatCustomers(true);
+                    break;
+                case 'h':
+                    System.out.println("Options:\n's': Seat a customer right away\n'r': Reserve a seat for a customer\n'e': Empty a seat");
+                    break;
+                case 'e':
+                    System.out.print("Enter ID of table to empty\n>");
+                    int id = sc.nextInt();
+                    for (Table table : this.tables) {
+                        if (table.id == id) {
+                            table.empty();
+                            System.out.println("Table " + table.id + " is empty");
+                        }
+                    }
+                    break;
+                default:
+                    System.out.println("Invalid input");
+                    break;
+            }
+        }
+    }
+
     public static void main(String[] args) {
         Table table1 = new Table(0,4);
         Table table2 = new Table(1,2);
@@ -133,6 +166,5 @@ public class Restaurant {
 
         Restaurant restaurant1 = new Restaurant(tables, servers);
         restaurant1.generateTableGroups();
-        restaurant1.seatCustomers(false);
     }
 }
