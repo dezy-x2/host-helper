@@ -47,7 +47,6 @@ public class Restaurant {
                         // if you don't remove the index they will be added twice
                         tablesCopy.remove(index);
                     } catch (IndexOutOfBoundsException e) {
-                        //TODO: handle exception
                     }
                     
                 }
