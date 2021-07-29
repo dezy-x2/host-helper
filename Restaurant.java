@@ -131,7 +131,7 @@ public class Restaurant {
                     this.seatCustomers(true);
                     break;
                 case 'h':
-                    System.out.println("Options:\n's': Seat a customer right away\n'r': Reserve a seat for a customer\n'e': Empty a seat\n'X': End shift");
+                    System.out.println("Options:\n's': Seat a customer right away\n'r': Reserve a seat for a customer\n'e': Empty a seat\n'X': End shift\n:'E': Empty all tables");
                     break;
                 case 'e':
                     System.out.print("Enter ID of table to empty\n>");
@@ -149,6 +149,16 @@ public class Restaurant {
                     if (exit == 'y') {
                         System.out.println("Goodbye :)");
                         return;
+                    }
+                    break;
+                case 'E':
+                    System.out.print("Are you sure you want to empty all tables?(y/n)\n>");
+                    char empty = sc.next().charAt(0);
+                    if (empty == 'y') {
+                        for (Table table : this.tables) {
+                            table.empty();
+                        }
+                        System.out.println("All tables are empty.");
                     }
                     break;
                 default:
