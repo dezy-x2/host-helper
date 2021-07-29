@@ -121,7 +121,7 @@ public class Restaurant {
         Scanner sc = new Scanner(System.in);
         this.generateTableGroups();
         while (true) {
-            System.out.print("What would you like to do? \n>");
+            System.out.print("What would you like to do?(press 'h' for help menu) \n>");
             char res = sc.next().charAt(0);
             switch (res) {
                 case 's':
@@ -131,7 +131,7 @@ public class Restaurant {
                     this.seatCustomers(true);
                     break;
                 case 'h':
-                    System.out.println("Options:\n's': Seat a customer right away\n'r': Reserve a seat for a customer\n'e': Empty a seat");
+                    System.out.println("Options:\n's': Seat a customer right away\n'r': Reserve a seat for a customer\n'e': Empty a seat\n'X': End shift");
                     break;
                 case 'e':
                     System.out.print("Enter ID of table to empty\n>");
@@ -143,6 +143,8 @@ public class Restaurant {
                         }
                     }
                     break;
+                case 'X':
+                    return;
                 default:
                     System.out.println("Invalid input");
                     break;
@@ -165,6 +167,6 @@ public class Restaurant {
         Server[] servers = {server1, server2};
 
         Restaurant restaurant1 = new Restaurant(tables, servers);
-        restaurant1.generateTableGroups();
+        restaurant1.host();
     }
 }
