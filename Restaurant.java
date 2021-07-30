@@ -166,6 +166,7 @@ public class Restaurant {
                     char exit = sc.next().charAt(0);
                     if (exit == 'y') {
                         System.out.println("Goodbye :)");
+                        sc.close();
                         return;
                     }
                     break;
