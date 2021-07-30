@@ -96,8 +96,12 @@ public class Restaurant {
         TableGroup tableGroup = this.bestTableGroup(groupCount);
         if (tableGroup != null) {
             Table table = tableGroup.bestTable(groupCount);
-            table.fillTable(reservation);
-            System.out.println(reservation ? "Reserved table " + table.id : "Seating at table " + table.id + "...");
+            if (table == null) {
+                System.out.println("Not enough seats");
+            } else {
+                table.fillTable(reservation);
+                System.out.println(reservation ? "Reserved table " + table.id : "Seating at table " + table.id + "...");
+            }
         } else {
             System.out.println("No tables available.");
         }
