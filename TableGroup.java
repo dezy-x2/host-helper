@@ -38,10 +38,10 @@ public class TableGroup {
         }
     }
 
-    public Table bestTable() {
+    public Table bestTable(int groupCount) {
         Table bestTable = null;
         for (Table table : tables) {
-            if (table.isAvaliable()) {
+            if (table.isAvaliable() && table.numSeats >= groupCount) {
                 bestTable = table;
                 break;
             }
