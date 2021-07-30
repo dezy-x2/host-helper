@@ -49,6 +49,15 @@ public class TableGroup {
         return bestTable;
     }
 
+    public boolean hasProperTable(int groupCount) {
+        for (Table table : tables) {
+            if (!(table.isAvaliable() || table.numSeats >= groupCount)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     @Override
     public String toString() {
         return "TableGroup{\n" +
