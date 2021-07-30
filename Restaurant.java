@@ -143,10 +143,14 @@ public class Restaurant {
             char res = sc.next().charAt(0);
             switch (res) {
                 case 's':
-                    this.seatCustomers(false);
+                    System.out.print("How many in the group?\n>");
+                    int groupCount = sc.nextInt();
+                    this.seatCustomers(false, groupCount);
                     break;
                 case 'r':
-                    this.seatCustomers(true);
+                    System.out.print("How many in the group?\n>");
+                    groupCount = sc.nextInt();
+                    this.seatCustomers(true, groupCount);
                     break;
                 case 'h':
                     System.out.println("Options:\n's': Seat a customer right away\n'r': Reserve a seat for a customer\n'e': Empty a seat\n'X': End shift\n'E': Empty all tables\n'p': Print list of tables and their status");
