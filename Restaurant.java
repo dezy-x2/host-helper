@@ -84,15 +84,23 @@ public class Restaurant {
             }
         }
         int index = (int)Math.floor(Math.random() * availableGroups.size());
-        return availableGroups.get(index);
+        try {
+            return availableGroups.get(index);
+        } catch (IndexOutOfBoundsException e) {
+            return null;
+        }
     }
 
     public void seatCustomers(boolean reservation) {
         System.out.println(reservation ? "Reserving tables..." : "Seatting customers...");
         TableGroup tableGroup = this.bestTableGroup();
-        Table table = tableGroup.bestTable();
-        table.fillTable(reservation);
-        System.out.println(reservation ? "Reserved table " + table.id : "Seating at table " + table.id + "...");
+        if (tableGroup != null) {
+            Table table = tableGroup.bestTable();
+            table.fillTable(reservation);
+            System.out.println(reservation ? "Reserved table " + table.id : "Seating at table " + table.id + "...");
+        } else {
+            System.out.println("No tables available.");
+        }
     }
 
     public void addTables(Table... tables) {
@@ -131,7 +139,7 @@ public class Restaurant {
         Scanner sc = new Scanner(System.in);
         this.generateTableGroups();
         while (true) {
-            System.out.print("What would you like to do?(press 'h' for help menu) \n>");
+            System.out.print("\nWhat would you like to do?(press 'h' for help menu) \n>");
             char res = sc.next().charAt(0);
             switch (res) {
                 case 's':
