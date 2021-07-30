@@ -68,7 +68,7 @@ public class Restaurant {
         return max;
     }
 
-    private TableGroup bestTableGroup() {
+    private TableGroup bestTableGroup(int groupCount) {
         ArrayList<TableGroup> availableGroups = new ArrayList<TableGroup>();
         for (TableGroup tableGroup : this.tableGroups) {
             if (!tableGroup.isFull()) {
@@ -78,7 +78,7 @@ public class Restaurant {
         int maxEmptyTables = this.maxEmptyTables(availableGroups);
         for (int i=0; i<availableGroups.size(); i++) {
             TableGroup tableGroup = availableGroups.get(i);
-            if (tableGroup.emptyCount() < maxEmptyTables) {
+            if (tableGroup.emptyCount() < maxEmptyTables && tableGroup.hasProperTable(groupCount)) {
                 availableGroups.remove(i);
                 i--;
             }
@@ -91,11 +91,11 @@ public class Restaurant {
         }
     }
 
-    public void seatCustomers(boolean reservation) {
+    public void seatCustomers(boolean reservation, int groupCount) {
         System.out.println(reservation ? "Reserving tables..." : "Seatting customers...");
-        TableGroup tableGroup = this.bestTableGroup();
+        TableGroup tableGroup = this.bestTableGroup(groupCount);
         if (tableGroup != null) {
-            Table table = tableGroup.bestTable();
+            Table table = tableGroup.bestTable(groupCount);
             table.fillTable(reservation);
             System.out.println(reservation ? "Reserved table " + table.id : "Seating at table " + table.id + "...");
         } else {
