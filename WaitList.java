@@ -23,8 +23,10 @@ public class WaitList {
     }
 
     public Patron seatFromWaitList(Table table) {
-        for (Patron patron : waitList) {
-            if (table.numSeats >= patron.groupCount) {
+        for (int i=0; i<waitList.size(); i++) {
+            if (table.numSeats >= waitList.get(i).groupCount) {
+                Patron patron = waitList.get(i);
+                waitList.remove(i);
                 return patron;
             }
         }
