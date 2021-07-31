@@ -4,11 +4,13 @@ public class Restaurant {
     private ArrayList<TableGroup> tableGroups;
     private ArrayList<Table> tables;
     private ArrayList<Server> servers;
+    private WaitList waitList;
 
     Restaurant(Table[] tables, Server[] servers) {
         this.tableGroups = new ArrayList<TableGroup>();
         this.tables = new ArrayList<Table>();
         this.servers = new ArrayList<Server>();
+        this.waitList = new WaitList();
         for (Table table : tables) {
             this.tables.add(table);
         }
@@ -157,7 +159,7 @@ public class Restaurant {
                     this.seatCustomers(true, groupCount);
                     break;
                 case 'h':
-                    System.out.println("Options:\n's': Seat a customer right away\n'r': Reserve a seat for a customer\n'e': Empty a seat\n'X': End shift\n'E': Empty all tables\n'p': Print list of tables and their status");
+                    System.out.println("Options:\n's': Seat a customer right away\n'r': Reserve a seat for a customer\n'e': Empty a seat\n'X': End shift\n'E': Empty all tables\n'p': Print list of tables and their status\na: Add patron to waitlist");
                     break;
                 case 'e':
                     System.out.print("Enter ID of table to empty\n>");
@@ -191,6 +193,14 @@ public class Restaurant {
                 case 'p':
                     System.out.println(this.printTables());
                     break;
+                case 'a':
+                    System.out.print("Enter patron name\n>");
+                    String name = sc.next();
+                    System.out.print("Enter patron group size\n>");
+                    int size = sc.nextInt();
+                    System.out.print("Enter patron phone number\n>");
+                    int phoneNumber = sc.nextInt();
+                    this.waitList.add(name, phoneNumber, size);
                 default:
                     System.out.println("Invalid input");
                     break;
