@@ -30,4 +30,14 @@ public class WaitList {
         }
         return null;
     }
+
+    @Override
+    public String toString() {
+        String str = "WaitList{";
+        for (Patron patron : waitList) {
+            str += patron.toString() + " ";
+        }
+        str += "}";
+        return str;
+    }
 }
