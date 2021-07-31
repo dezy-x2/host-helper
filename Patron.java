@@ -11,4 +11,8 @@ public class Patron {
         this.groupCount = groupCount;
     }
 
+    public void callPatron() {
+        System.out.println("Calling " + name + " at " + phoneNumber+"...");
+    }
+
 }
