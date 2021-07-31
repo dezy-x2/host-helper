@@ -105,7 +105,7 @@ public class Restaurant {
                 System.out.println(reservation ? "Reserved table " + table.id : "Seating at table " + table.id + "...");
             }
         } else {
-            System.out.println("No tables available.");
+            System.out.println("No tables available. Press 'a' to add patron to waitlist.");
         }
     }
 
@@ -181,7 +181,7 @@ public class Restaurant {
                         if (table.id == id) {
                             table.empty();
                             System.out.println("Table " + table.id + " is empty");
-                        }//! need to add logic to check if someone on waitlist can use this table (prob use a function)
+                        }
                     }
                     this.tryToSeat(id);
                     break;
