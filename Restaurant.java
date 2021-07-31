@@ -215,7 +215,7 @@ public class Restaurant {
                     System.out.print("Enter patron group size\n>");
                     int size = sc.nextInt();
                     System.out.print("Enter patron phone number\n>");
-                    int phoneNumber = sc.nextInt();
+                    String phoneNumber = sc.next();
                     this.waitList.add(name, phoneNumber, size);
                     break;
                 default:

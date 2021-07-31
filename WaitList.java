@@ -7,7 +7,7 @@ public class WaitList {
         waitList = new ArrayList<Patron>();
     }
 
-    public void add(String name, int phoneNumber , int groupCount) {
+    public void add(String name, String phoneNumber , int groupCount) {
         Patron patron = new Patron(name, phoneNumber, groupCount);
         this.waitList.add(patron);
         System.out.println(patron.name + " has been added to the wait list.");
