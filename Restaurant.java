@@ -192,6 +192,8 @@ public class Restaurant {
                     break;
                 case 'p':
                     System.out.println(this.printTables());
+                    System.out.println("\n");
+                    System.out.println(this.waitList);
                     break;
                 case 'a':
                     System.out.print("Enter patron name\n>");
@@ -201,6 +203,7 @@ public class Restaurant {
                     System.out.print("Enter patron phone number\n>");
                     int phoneNumber = sc.nextInt();
                     this.waitList.add(name, phoneNumber, size);
+                    break;
                 default:
                     System.out.println("Invalid input");
                     break;
