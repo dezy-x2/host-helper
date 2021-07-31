@@ -20,4 +20,13 @@ public class WaitList {
         }
         return false;
     }
+
+    public Patron seatFromWaitList(Table table) {
+        for (Patron patron : waitList) {
+            if (table.numSeats >= patron.groupCount) {
+                return patron;
+            }
+        }
+        return null;
+    }
 }
