@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 public class Patron {
     public String name;
     private int phoneNumber;
