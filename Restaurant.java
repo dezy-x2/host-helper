@@ -141,6 +141,19 @@ public class Restaurant {
         return result;
     }
 
+    private void tryToSeat(int id) {
+        for (Table table : tables) {
+            if (table.id == id) {
+                boolean eligible = waitList.eligiblePatron(table);
+                if (eligible) {
+                    Patron patron = waitList.seatFromWaitList(table);
+                    table.fillTable(false);
+                    System.out.println("Seated patron " + patron.name + " at table " + table.id);
+                }
+            }
+        }
+    }
+
     public void host() {
         Scanner sc = new Scanner(System.in);
         this.generateTableGroups();
@@ -168,8 +181,9 @@ public class Restaurant {
                         if (table.id == id) {
                             table.empty();
                             System.out.println("Table " + table.id + " is empty");
-                        }
+                        }//! need to add logic to check if someone on waitlist can use this table (prob use a function)
                     }
+                    this.tryToSeat(id);
                     break;
                 case 'X':
                     System.out.print("Are you sure you want to exit?(y/n)\n>");
