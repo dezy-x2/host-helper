@@ -22,6 +22,8 @@ public class Restaurant {
     // Add a table group to the restaurant
     public void generateTableGroups() {
         System.out.println("Generating table groups...");
+        // this prevents an unnecessary warning from showing up
+        @SuppressWarnings("unchecked")
         // need a copy i can modify
         ArrayList<Table> tablesCopy = (ArrayList<Table>) this.tables.clone();
         int tableAmount = tables.size();
