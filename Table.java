@@ -1,9 +1,12 @@
+import java.util.Date;
+
 public class Table {
     public int id;
     public int numSeats;
     private boolean isReserved;
     private boolean isEmpty;
     public Server server;
+    private long seatingTime;
 
     public Table(int id, int numSeats) {
         this.id = id;
@@ -11,11 +14,14 @@ public class Table {
         this.isReserved = false;
         this.isEmpty = true;
         this.server = null;
+        this.seatingTime = 0;
     }
 
     public void fillTable(boolean reservation) {
         if(this.isAvaliable() && reservation) {
             this.isReserved = true;
+            Date now = new Date();
+            this.seatingTime = now.getTime();
         } else if (this.isAvaliable() && !reservation) {
             this.isReserved = false;
             this.isEmpty = false;
