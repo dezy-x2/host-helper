@@ -1,6 +1,7 @@
 run:
-	clear
+	@clear
 	@echo "Compiling..."
-	javac Restaurant.java -Xlint
+	@javac Restaurant.java -Xlint
 	@echo "Running"
-	java Restaurant
+	@clear
+	@java Restaurant
