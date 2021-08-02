@@ -42,6 +42,12 @@ public class Table {
         this.server = server;
     }
 
+    public long seatingTimePassed() {
+        Date now = new Date();
+        long timePassed = now.getTime() - this.seatingTime;
+        return timePassed;
+    }
+
     @Override
     public String toString() {
         return "Table{\n" +
