@@ -25,7 +25,7 @@ public class WaitList {
     public Table eligibleTable(int groupCount, ArrayList<Table> tables) {
         ArrayList<Table> tablesWithSeats = new ArrayList<Table>();
         Table bestTime = null;
-        long max = Integer.MAX_VALUE;
+        long max = Long.MAX_VALUE;
         for (Table table : tables) {
             if (table.numSeats >= groupCount) {
                 tablesWithSeats.add(table);
