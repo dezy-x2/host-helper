@@ -160,10 +160,8 @@ public class Restaurant {
         Table bestTable = waitList.eligibleTable(groupCount, this.tables);
         if (bestTable != null) {
             return 60 - ((bestTable.seatingTimePassed() / 1000) / 60);
-        } else {
-            System.out.println("Err");
-            return 0;
         }
+        return 0;
     }
 
     public void host() {
@@ -224,7 +222,8 @@ public class Restaurant {
                 case 'a':
                     System.out.print("Enter patron group size\n>");
                     int size = sc.nextInt();
-                    this.getWaitTime(size);
+                    long waitTime = this.getWaitTime(size);
+                    System.out.println("Wait time: " + waitTime + " minutes");
                     System.out.print("Continue?(y/n)\n>");
                     char continue1 = sc.next().charAt(0);
                     if (continue1 != 'y') {
