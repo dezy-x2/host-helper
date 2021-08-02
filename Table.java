@@ -25,6 +25,8 @@ public class Table {
         } else if (this.isAvaliable() && !reservation) {
             this.isReserved = false;
             this.isEmpty = false;
+            Date now = new Date();
+            this.seatingTime = now.getTime();
         }
         
     }
