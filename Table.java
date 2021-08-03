@@ -6,6 +6,7 @@ public class Table {
     private boolean isReserved;
     private boolean isEmpty;
     public Server server;
+    // this is initalized when the table is sat
     private long seatingTime;
 
     public Table(int id, int numSeats) {
@@ -21,21 +22,25 @@ public class Table {
         if(this.isAvaliable() && reservation) {
             this.isReserved = true;
             Date now = new Date();
+            // initializes the seating time to the current miliseconds from start time
             this.seatingTime = now.getTime();
         } else if (this.isAvaliable() && !reservation) {
             this.isReserved = false;
             this.isEmpty = false;
             Date now = new Date();
+            // initializes the seating time to the current miliseconds from start time
             this.seatingTime = now.getTime();
         }
         
     }
 
+    // emptys a table by turning making isReserved false and isEmpty true
     public void empty() {
         this.isReserved = false;
         this.isEmpty = true;
     }
 
+    // checks if a table is avaliable
     public boolean isAvaliable() {
         return this.isEmpty && !this.isReserved;
     }
@@ -44,6 +49,7 @@ public class Table {
         this.server = server;
     }
 
+    // returns the amount of miliseconds since the table was sat
     public long seatingTimePassed() {
         Date now = new Date();
         long timePassed = now.getTime() - this.seatingTime;

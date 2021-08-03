@@ -1,9 +1,13 @@
 import java.util.*;
 
 public class Restaurant {
+    // table groups hold smaller ArrayLists of tables and one server who serves those tables
     private ArrayList<TableGroup> tableGroups;
+    // holds all of the restaurants tables
     private ArrayList<Table> tables;
+    // holds all of the servers
     private ArrayList<Server> servers;
+    // keeps track of the customers who have not been sat yet
     private WaitList waitList;
 
     Restaurant(Table[] tables, Server[] servers) {
@@ -11,6 +15,7 @@ public class Restaurant {
         this.tables = new ArrayList<Table>();
         this.servers = new ArrayList<Server>();
         this.waitList = new WaitList();
+        // loops over all of the tables and servers and adds them to the appropriate lists
         for (Table table : tables) {
             this.tables.add(table);
         }
@@ -61,6 +66,7 @@ public class Restaurant {
         }
     }
 
+    // finds the maximum number of empty tables in a table group
     private int maxEmptyTables(ArrayList<TableGroup> tableGroups) {
         int max = Integer.MAX_VALUE;
         for (TableGroup tableGroup : tableGroups) {
@@ -74,6 +80,7 @@ public class Restaurant {
 
     private TableGroup bestTableGroup(int groupCount) {
         ArrayList<TableGroup> availableGroups = new ArrayList<TableGroup>();
+        // loops over all of the table groups and adds them to the list if they are not full
         for (TableGroup tableGroup : this.tableGroups) {
             if (!tableGroup.isFull()) {
                 availableGroups.add(tableGroup);
@@ -82,15 +89,19 @@ public class Restaurant {
         int maxEmptyTables = this.maxEmptyTables(availableGroups);
         for (int i=0; i<availableGroups.size(); i++) {
             TableGroup tableGroup = availableGroups.get(i);
+            // removes table groups that do not have suitable tables for the customer
             if (tableGroup.emptyCount() < maxEmptyTables && tableGroup.hasProperTable(groupCount)) {
                 availableGroups.remove(i);
                 i--;
             }
         }
+        // generates a random index to choose from 
         int index = (int)Math.floor(Math.random() * availableGroups.size());
         try {
             return availableGroups.get(index);
         } catch (IndexOutOfBoundsException e) {
+            // if there are no avaliable table groups (aka the restaurant is full) it returns null
+            // the null will be handled in the calling method
             return null;
         }
     }
@@ -98,8 +109,10 @@ public class Restaurant {
     public void seatCustomers(boolean reservation, int groupCount) {
         System.out.println(reservation ? "Reserving tables..." : "Seatting customers...");
         TableGroup tableGroup = this.bestTableGroup(groupCount);
+        // if there are no tables left bestTableGroup returns null
         if (tableGroup != null) {
             Table table = tableGroup.bestTable(groupCount);
+            // if there are no tables left bestTable returns null
             if (table == null) {
                 System.out.println("Not enough seats");
             } else {
@@ -133,6 +146,7 @@ public class Restaurant {
                 "\n}";
     }
 
+    // prints each table id and whether it is available or not
     private String printTables() {
         String result = "{";
         for (Table table : tables) {
@@ -143,11 +157,14 @@ public class Restaurant {
         return result;
     }
 
+    // this method trys to seat patrons from the waitlist when a table opens up
     private void tryToSeat(int id) {
         for (Table table : tables) {
             if (table.id == id) {
+                // first it checks if there is a patron that can be sat at the table
                 boolean eligible = waitList.eligiblePatron(table);
                 if (eligible) {
+                    // then we seat the patron and print a message
                     Patron patron = waitList.seatFromWaitList(table);
                     table.fillTable(false);
                     System.out.println("Seated patron " + patron.name + " at table " + table.id);
@@ -159,12 +176,16 @@ public class Restaurant {
     private long getWaitTime(int groupCount) {
         Table bestTable = waitList.eligibleTable(groupCount, this.tables);
         if (bestTable != null) {
+            // seatingTimePassed() returns a time in miliseconds so we convert it to seconds then minutes
+            // then subtract that from 60 to get aprox how long the wait should be
             return 60 - ((bestTable.seatingTimePassed() / 1000) / 60);
         }
         return 0;
     }
 
+    // this method creates a CLI interface for the restaurant
     public void host() {
+        // scanner is how we read the input from the user
         Scanner sc = new Scanner(System.in);
         this.generateTableGroups();
         while (true) {
@@ -182,7 +203,7 @@ public class Restaurant {
                     this.seatCustomers(true, groupCount);
                     break;
                 case 'h':
-                    System.out.println("Options:\n's': Seat a customer right away\n'r': Reserve a seat for a customer\n'e': Empty a seat\n'X': End shift\n'E': Empty all tables\n'p': Print list of tables and their status\na: Add patron to waitlist");
+                    System.out.println("Options:\n's': Seat a customer right away\n'r': Reserve a seat for a customer\n'e': Empty a seat\n'X': End shift\n'E': Empty all tables\n'p': Print list of tables and their status\n'a': Add patron to waitlist");
                     break;
                 case 'e':
                     System.out.print("Enter ID of table to empty\n>");
