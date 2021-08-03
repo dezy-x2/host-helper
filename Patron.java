@@ -11,14 +11,11 @@ public class Patron {
 
     @Override
     public String toString() {
-        return "Patron{" +
-                "name='" + name + '\'' +
-                ", phoneNumber=" + phoneNumber +
-                ", groupCount=" + groupCount +
-                '}';
+        return "Patron{" + "name='" + name + '\'' + ", phoneNumber=" + phoneNumber + ", groupCount=" + groupCount + '}';
     }
+
     public void callPatron() {
-        System.out.println("Calling " + name + " at " + phoneNumber+"...");
+        System.out.println("Calling " + name + " at " + phoneNumber + "...");
     }
 
 }

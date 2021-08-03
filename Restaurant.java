@@ -1,7 +1,8 @@
 import java.util.*;
 
 public class Restaurant {
-    // table groups hold smaller ArrayLists of tables and one server who serves those tables
+    // table groups hold smaller ArrayLists of tables and one server who serves
+    // those tables
     private ArrayList<TableGroup> tableGroups;
     // holds all of the restaurants tables
     private ArrayList<Table> tables;
@@ -15,7 +16,8 @@ public class Restaurant {
         this.tables = new ArrayList<Table>();
         this.servers = new ArrayList<Server>();
         this.waitList = new WaitList();
-        // loops over all of the tables and servers and adds them to the appropriate lists
+        // loops over all of the tables and servers and adds them to the appropriate
+        // lists
         for (Table table : tables) {
             this.tables.add(table);
         }
@@ -33,23 +35,23 @@ public class Restaurant {
         ArrayList<Table> tablesCopy = (ArrayList<Table>) this.tables.clone();
         int tableAmount = tables.size();
         int serverAmount = servers.size();
-        int tableGroupAmount = (int)((tableAmount / serverAmount)+0.5);
+        int tableGroupAmount = (int) ((tableAmount / serverAmount) + 0.5);
         // just so we can make sure every server has a table
-        for (int i=0; i<serverAmount; i++) {
+        for (int i = 0; i < serverAmount; i++) {
             ArrayList<Table> temp = new ArrayList<Table>();
             // makes sure that we pick an appropiate ammount of tables per group
-            for (int j=0; j<tableGroupAmount; j++) {
+            for (int j = 0; j < tableGroupAmount; j++) {
                 // this makes sure that every table gets assinged to a group
                 // without this the if there are an odd number of tables one won't get assigned
-                if(i == serverAmount-1 && j == 0) {
-                    for (int k=0; k<tablesCopy.size(); k++) {
+                if (i == serverAmount - 1 && j == 0) {
+                    for (int k = 0; k < tablesCopy.size(); k++) {
                         temp.add(tablesCopy.get(k));
                         // if you don't remove the index they will be added twice
                         tablesCopy.remove(k);
                     }
                 } else {
                     // picks random tables from the list for each group
-                    int index = (int)Math.floor(Math.random() * tablesCopy.size());
+                    int index = (int) Math.floor(Math.random() * tablesCopy.size());
                     // a bug arrises here with even amounts of tables
                     try {
                         temp.add(tablesCopy.get(index));
@@ -57,12 +59,12 @@ public class Restaurant {
                         tablesCopy.remove(index);
                     } catch (IndexOutOfBoundsException e) {
                     }
-                    
+
                 }
             }
             // finally creates the table group and adds it to the Restaurants list
             Server currServer = this.servers.get(i);
-            this.tableGroups.add(new TableGroup(currServer,temp));
+            this.tableGroups.add(new TableGroup(currServer, temp));
         }
     }
 
@@ -80,14 +82,15 @@ public class Restaurant {
 
     private TableGroup bestTableGroup(int groupCount) {
         ArrayList<TableGroup> availableGroups = new ArrayList<TableGroup>();
-        // loops over all of the table groups and adds them to the list if they are not full
+        // loops over all of the table groups and adds them to the list if they are not
+        // full
         for (TableGroup tableGroup : this.tableGroups) {
             if (!tableGroup.isFull()) {
                 availableGroups.add(tableGroup);
             }
         }
         int maxEmptyTables = this.maxEmptyTables(availableGroups);
-        for (int i=0; i<availableGroups.size(); i++) {
+        for (int i = 0; i < availableGroups.size(); i++) {
             TableGroup tableGroup = availableGroups.get(i);
             // removes table groups that do not have suitable tables for the customer
             if (tableGroup.emptyCount() < maxEmptyTables && tableGroup.hasProperTable(groupCount)) {
@@ -95,12 +98,13 @@ public class Restaurant {
                 i--;
             }
         }
-        // generates a random index to choose from 
-        int index = (int)Math.floor(Math.random() * availableGroups.size());
+        // generates a random index to choose from
+        int index = (int) Math.floor(Math.random() * availableGroups.size());
         try {
             return availableGroups.get(index);
         } catch (IndexOutOfBoundsException e) {
-            // if there are no avaliable table groups (aka the restaurant is full) it returns null
+            // if there are no avaliable table groups (aka the restaurant is full) it
+            // returns null
             // the null will be handled in the calling method
             return null;
         }
@@ -138,12 +142,8 @@ public class Restaurant {
 
     @Override
     public String toString() {
-        return "Restraunt{\n" +
-                "numTables=" + tables.size() +
-                ", \ntableGroups=" + tableGroups +
-                ", \ntables=" + tables +
-                ", \nservers=" + servers +
-                "\n}";
+        return "Restraunt{\n" + "numTables=" + tables.size() + ", \ntableGroups=" + tableGroups + ", \ntables=" + tables
+                + ", \nservers=" + servers + "\n}";
     }
 
     // prints each table id and whether it is available or not
@@ -176,7 +176,8 @@ public class Restaurant {
     private long getWaitTime(int groupCount) {
         Table bestTable = waitList.eligibleTable(groupCount, this.tables);
         if (bestTable != null) {
-            // seatingTimePassed() returns a time in miliseconds so we convert it to seconds then minutes
+            // seatingTimePassed() returns a time in miliseconds so we convert it to seconds
+            // then minutes
             // then subtract that from 60 to get aprox how long the wait should be
             return 60 - ((bestTable.seatingTimePassed() / 1000) / 60);
         }
@@ -203,7 +204,8 @@ public class Restaurant {
                     this.seatCustomers(true, groupCount);
                     break;
                 case 'h':
-                    System.out.println("Options:\n's': Seat a customer right away\n'r': Reserve a seat for a customer\n'e': Empty a seat\n'X': End shift\n'E': Empty all tables\n'p': Print list of tables and their status\n'a': Add patron to waitlist");
+                    System.out.println(
+                            "Options:\n's': Seat a customer right away\n'r': Reserve a seat for a customer\n'e': Empty a seat\n'X': End shift\n'E': Empty all tables\n'p': Print list of tables and their status\n'a': Add patron to waitlist");
                     break;
                 case 'e':
                     System.out.print("Enter ID of table to empty\n>");
@@ -264,18 +266,18 @@ public class Restaurant {
     }
 
     public static void main(String[] args) {
-        Table table1 = new Table(0,4);
-        Table table2 = new Table(1,2);
-        Table table3 = new Table(2,4);
-        Table table4 = new Table(3,2);
-        Table table5 = new Table(4,6);
+        Table table1 = new Table(0, 4);
+        Table table2 = new Table(1, 2);
+        Table table3 = new Table(2, 4);
+        Table table4 = new Table(3, 2);
+        Table table5 = new Table(4, 6);
         // Table table6 = new Table(5,4);
 
         Server server1 = new Server("Daniel", 100);
         Server server2 = new Server("John", 200);
 
-        Table[] tables = {table1, table2, table3, table4, table5};
-        Server[] servers = {server1, server2};
+        Table[] tables = { table1, table2, table3, table4, table5 };
+        Server[] servers = { server1, server2 };
 
         Restaurant restaurant1 = new Restaurant(tables, servers);
         restaurant1.host();

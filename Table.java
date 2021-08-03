@@ -19,7 +19,7 @@ public class Table {
     }
 
     public void fillTable(boolean reservation) {
-        if(this.isAvaliable() && reservation) {
+        if (this.isAvaliable() && reservation) {
             this.isReserved = true;
             Date now = new Date();
             // initializes the seating time to the current miliseconds from start time
@@ -31,7 +31,7 @@ public class Table {
             // initializes the seating time to the current miliseconds from start time
             this.seatingTime = now.getTime();
         }
-        
+
     }
 
     // emptys a table by turning making isReserved false and isEmpty true
@@ -58,11 +58,7 @@ public class Table {
 
     @Override
     public String toString() {
-        return "Table{\n" +
-                "id=" + id +
-                "\nnumSeats=" + this.numSeats +
-                ", \nserver=" + this.server + 
-                "\n}";
+        return "Table{\n" + "id=" + id + "\nnumSeats=" + this.numSeats + ", \nserver=" + this.server + "\n}";
     }
 
 }

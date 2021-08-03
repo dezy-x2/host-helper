@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+
 public class TableGroup {
     // list of the tables which is a subset of the tables in the restaurant
     private ArrayList<Table> tables;
@@ -8,7 +9,8 @@ public class TableGroup {
     public TableGroup(Server server, ArrayList<Table> tables) {
         this.tables = tables;
         this.server = server;
-        // this sets each tables server to the server that serves all tables in this group
+        // this sets each tables server to the server that serves all tables in this
+        // group
         for (Table table : this.tables) {
             table.setServer(this.server);
         }
@@ -37,7 +39,7 @@ public class TableGroup {
 
     // i don't think this is used anywhere lol
     public void fillTable(boolean reserved) {
-        if(reserved) {
+        if (reserved) {
             System.out.println("Reserving table...");
         } else {
             System.out.println("Filling table...");
@@ -68,10 +70,7 @@ public class TableGroup {
 
     @Override
     public String toString() {
-        return "TableGroup{\n" +
-                "\ntables=" + tables +
-                ", \nserver=" + server +
-                "\n}";
+        return "TableGroup{\n" + "\ntables=" + tables + ", \nserver=" + server + "\n}";
     }
 
 }

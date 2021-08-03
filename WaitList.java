@@ -8,7 +8,7 @@ public class WaitList {
         waitList = new ArrayList<Patron>();
     }
 
-    public void add(String name, String phoneNumber , int groupCount) {
+    public void add(String name, String phoneNumber, int groupCount) {
         // create a new patron object and add it to the wait list
         Patron patron = new Patron(name, phoneNumber, groupCount);
         this.waitList.add(patron);
@@ -47,7 +47,7 @@ public class WaitList {
 
     // actually seat the patron
     public Patron seatFromWaitList(Table table) {
-        for (int i=0; i<waitList.size(); i++) {
+        for (int i = 0; i < waitList.size(); i++) {
             if (table.numSeats >= waitList.get(i).groupCount) {
                 Patron patron = waitList.get(i);
                 // need to remove the patron from the waitlist
