@@ -37,15 +37,6 @@ public class TableGroup {
         return count;
     }
 
-    // i don't think this is used anywhere lol
-    public void fillTable(boolean reserved) {
-        if (reserved) {
-            System.out.println("Reserving table...");
-        } else {
-            System.out.println("Filling table...");
-        }
-    }
-
     // finds the first empty suitable table in this group
     public Table bestTable(int groupCount) {
         Table bestTable = null;
