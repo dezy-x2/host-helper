@@ -37,6 +37,10 @@ public class TableGroup {
         return count;
     }
 
+    public float getEmptyRatio() {
+        return (float) this.emptyCount() / (float) this.tables.size();
+    }
+
     // finds the first empty suitable table in this group
     public Table bestTable(int groupCount) {
         Table bestTable = null;
