@@ -72,7 +72,7 @@ public class Restaurant {
     private int maxEmptyTables(ArrayList<TableGroup> tableGroups) {
         int max = Integer.MAX_VALUE;
         for (TableGroup tableGroup : tableGroups) {
-            int emptyTables = (int) (tableGroup.getEmptyRatio() + 0.5); // TODO: i think there is an error here idk what
+            int emptyTables = (int) tableGroup.getEmptyRatio();
             System.out.println(emptyTables);
             if (emptyTables < max) {
                 max = emptyTables;
