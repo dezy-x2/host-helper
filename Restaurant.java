@@ -298,6 +298,7 @@ public class Restaurant {
                     System.out.print("Enter new table group id\n>");
                     int newTableGroupId = sc.nextInt();
                     this.handleTableSwitch(tableId, currTableGroupId, newTableGroupId);
+                    break;
                 default:
                     System.out.println("Invalid input");
                     break;
