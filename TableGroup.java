@@ -5,10 +5,12 @@ public class TableGroup {
     private ArrayList<Table> tables;
     // holds one server that serves all of these tables
     private Server server;
+    public int id;
 
-    public TableGroup(Server server, ArrayList<Table> tables) {
+    public TableGroup(Server server, ArrayList<Table> tables, int id) {
         this.tables = tables;
         this.server = server;
+        this.id = id;
         // this sets each tables server to the server that serves all tables in this
         // group
         for (Table table : this.tables) {
