@@ -158,6 +158,14 @@ public class Restaurant {
         return result;
     }
 
+    private String printTableGroups() {
+        String result = "";
+        for (TableGroup tableGroup : tableGroups) {
+            result += tableGroup.printTables() + ", \n";
+        }
+        return result;
+    }
+
     // this method trys to seat patrons from the waitlist when a table opens up
     private void tryToSeat(int id) {
         for (Table table : tables) {
@@ -206,7 +214,7 @@ public class Restaurant {
                     break;
                 case 'h':
                     System.out.println(
-                            "Options:\n's': Seat a customer right away\n'r': Reserve a seat for a customer\n'e': Empty a seat\n'X': End shift\n'E': Empty all tables\n'p': Print list of tables and their status\n'a': Add patron to waitlist");
+                            "Options:\n's': Seat a customer right away\n'r': Reserve a seat for a customer\n'e': Empty a seat\n'X': End shift\n'E': Empty all tables\n'p': Print list of tables and their status\n'a': Add patron to waitlist\n'g': Print table groups");
                     break;
                 case 'e':
                     System.out.print("Enter ID of table to empty\n>");
@@ -258,6 +266,9 @@ public class Restaurant {
                     System.out.print("Enter patron phone number\n>");
                     String phoneNumber = sc.next();
                     this.waitList.add(name, phoneNumber, size);
+                    break;
+                case 'g':
+                    this.printTableGroups();
                     break;
                 default:
                     System.out.println("Invalid input");
