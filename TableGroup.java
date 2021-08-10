@@ -65,6 +65,14 @@ public class TableGroup {
         return true;
     }
 
+    public String printTables() {
+        String result = "TableGroup: " + id + "{\n ";
+        for (Table table : tables) {
+            result += table.id + "\n";
+        }
+        return result + "}";
+    }
+
     @Override
     public String toString() {
         return "TableGroup{\n" + "\ntables=" + tables + ", \nserver=" + server + "\n}";
