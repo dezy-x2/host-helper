@@ -268,7 +268,7 @@ public class Restaurant {
                     this.waitList.add(name, phoneNumber, size);
                     break;
                 case 'g':
-                    this.printTableGroups();
+                    System.out.println(this.printTableGroups());
                     break;
                 default:
                     System.out.println("Invalid input");
