@@ -65,6 +65,19 @@ public class TableGroup {
         return true;
     }
 
+    public void removeTable(int id) {
+        for (Table table : tables) {
+            if (table.id == id) {
+                tables.remove(table);
+                break;
+            }
+        }
+    }
+
+    public void addTable(Table table) {
+        tables.add(table);
+    }
+
     public String printTables() {
         String result = "TableGroup: " + id + "{\n ";
         for (Table table : tables) {
