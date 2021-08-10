@@ -64,7 +64,7 @@ public class Restaurant {
             }
             // finally creates the table group and adds it to the Restaurants list
             Server currServer = this.servers.get(i);
-            this.tableGroups.add(new TableGroup(currServer, temp));
+            this.tableGroups.add(new TableGroup(currServer, temp, i));
         }
     }
 
