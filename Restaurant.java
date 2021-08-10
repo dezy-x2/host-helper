@@ -193,6 +193,26 @@ public class Restaurant {
         return 0;
     }
 
+    private void handleTableSwitch(int id, int tableGroup1Id, int tableGroup2Id) {
+        Table table = null;
+        TableGroup tableGroup1 = null;
+        TableGroup tableGroup2 = null;
+        for (Table tempTable : this.tables) {
+            if (tempTable.id == id) {
+                table = tempTable;
+            }
+        }
+        for (TableGroup tempTableGroup : this.tableGroups) {
+            if (tempTableGroup.id == tableGroup1Id) {
+                tableGroup1 = tempTableGroup;
+            } else if (tempTableGroup.id == tableGroup2Id) {
+                tableGroup2 = tempTableGroup;
+            }
+        }
+        tableGroup1.removeTable(table);
+        tableGroup2.addTable(table);
+    }
+
     // this method creates a CLI interface for the restaurant
     public void host() {
         // scanner is how we read the input from the user
@@ -214,7 +234,7 @@ public class Restaurant {
                     break;
                 case 'h':
                     System.out.println(
-                            "Options:\n's': Seat a customer right away\n'r': Reserve a seat for a customer\n'e': Empty a seat\n'X': End shift\n'E': Empty all tables\n'p': Print list of tables and their status\n'a': Add patron to waitlist\n'g': Print table groups");
+                            "Options:\n's': Seat a customer right away\n'r': Reserve a seat for a customer\n'e': Empty a seat\n'X': End shift\n'E': Empty all tables\n'p': Print list of tables and their status\n'a': Add patron to waitlist\n'g': Print table groups\n'c': Change tables in table groups");
                     break;
                 case 'e':
                     System.out.print("Enter ID of table to empty\n>");
@@ -270,6 +290,14 @@ public class Restaurant {
                 case 'g':
                     System.out.println(this.printTableGroups());
                     break;
+                case 'c':
+                    System.out.print("Enter table to be switched id\n>");
+                    int tableId = sc.nextInt();
+                    System.out.print("Enter current table group id\n>");
+                    int currTableGroupId = sc.nextInt();
+                    System.out.print("Enter new table group id\n>");
+                    int newTableGroupId = sc.nextInt();
+                    this.handleTableSwitch(tableId, currTableGroupId, newTableGroupId);
                 default:
                     System.out.println("Invalid input");
                     break;
